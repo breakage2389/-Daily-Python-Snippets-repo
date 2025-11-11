@@ -1,7 +1,11 @@
+# def length_converter(n, m):
+
+
+
 print('Type of realms: ',
-'\n1-> Length / Distance' , '2-> Temperature','3-> Mass / Weight', '4-> Volume / Capacity',
-'\n5-> Area', '6-> Speed / Velocity', '7-> Time' , '8-> Energy',
-'\n9-> Pressure', '10-> Power' , '11-> Digital Storage / Data',' 12-> Angle')
+'\n1 -> Length / Distance' , '2 -> Temperature','3 -> Mass / Weight', '4 -> Volume / Capacity',
+'\n5 -> Area', '6 -> Speed / Velocity', '7 -> Time' , '8 -> Energy',
+'\n9 -> Pressure', '10 -> Power' , '11 -> Digital Storage / Data',' 12 -> Angle')
 
 print('')
 
@@ -12,5 +16,4 @@ while not realm.isdigit():
         continue
 
 if realm == '1':
-    print('length/distance: ')
-    n = int(input("Enter ()"))
+    print("That's Length/distance-section: ")

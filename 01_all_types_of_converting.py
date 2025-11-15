@@ -63,6 +63,19 @@ def length_converter(number, unit_from, unit_to):
         elif unit_to == 'ft':
             return number * 3
 
+    if unit_from == 'in':
+        if unit_to == 'cm':
+            return number * 2.54
+        elif unit_to == 'm':
+            return number * 0.0254
+        elif unit_to == 'mm':
+            return number * 25.4
+        elif unit_to == 'km':
+            return number * 0.0000254
+        elif unit_to == 'ft':
+            return number / 12
+        elif unit_to == 'yd':
+            return number / 36
 
     return None
 

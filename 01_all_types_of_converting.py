@@ -20,8 +20,64 @@ def length_converter(number, unit_from, unit_to):
             return number / 30.48
         elif unit_to == 'yd':
             return number / 91.44
-    return None
 
+    if unit_from == 'm':
+        if unit_to == 'cm':
+            return number * 100
+        elif unit_to == 'mm':
+            return number * 1000
+        elif unit_to == 'km':
+            return number / 1000
+        elif unit_to == 'in':
+            return number * 39.3701
+        elif unit_to == 'ft':
+            return number * 3.28084
+        elif unit_to == 'yd':
+            return number * 1.09361
+
+    if unit_from == 'mm':
+        if unit_to == 'cm':
+            return number / 10
+        elif unit_to == 'm':
+            return number / 1000
+        elif unit_to == 'km':
+            return number / 1000000
+        elif unit_to == 'in':
+            return number / 25.4
+        elif unit_to == 'ft':
+            return number / 304.8
+        elif unit_to == 'yd':
+            return number / 914.4
+
+    if unit_from == 'yd':
+        if unit_to == 'cm':
+            return number * 91.44
+        elif unit_to == 'm':
+            return number * 0.9144
+        elif unit_to == 'mm':
+            return number * 914.4
+        elif unit_to == 'km':
+            return number * 0.0009144
+        elif unit_to == 'in':
+            return number * 36
+        elif unit_to == 'ft':
+            return number * 3
+
+    if unit_from == 'in':
+        if unit_to == 'cm':
+            return number * 2.54
+        elif unit_to == 'm':
+            return number * 0.0254
+        elif unit_to == 'mm':
+            return number * 25.4
+        elif unit_to == 'km':
+            return number * 0.0000254
+        elif unit_to == 'ft':
+            return number / 12
+        elif unit_to == 'yd':
+            return number / 36
+
+    return None
 
 print('Type of realms: ',
       '\n1 -> Length / Distance', '2 -> Temperature', '3 -> Mass / Weight', '4 -> Volume / Capacity',

@@ -1,3 +1,4 @@
+
 def length_converter(number, unit_from, unit_to):
     unit_from = unit_from.lower()
     unit_to = unit_to.lower()
@@ -119,3 +120,7 @@ if realm == '1':
             break
         else:
             print("Unsupported unit. Try again.")
+elif realm == '2':
+    print("That's Temperature section:")
+    while True:
+        value = input("Input a temprature ,for example, 24 C: ").strip().split()

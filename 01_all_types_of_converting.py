@@ -1,4 +1,7 @@
 def temperature_converter(number , unit_from , unit_to):
+    unit_from = unit_from.lower()
+    unit_to = unit_to.lower()
+    if unit_from == 'f':
 
 
 def length_converter(number, unit_from, unit_to):
@@ -124,9 +127,9 @@ if realm == '1':
             print("Unsupported unit. Try again.")
 elif realm == '2':
     print("That's Temperature section:")
-    #from what (example:24 C)
+    #from what ,example->24 C
     while True:
-        value = input("Input a temperature ,for example, 24 C: ").strip().split()
+        value = input("Input a temperature ,for example, 24 C or 42 F: ").strip().split()
         if len(value) != 2:
             print("Invalid format. Try again.")
             continue
@@ -137,3 +140,10 @@ elif realm == '2':
             print("Invalid number. Try again.")
             continue
         break
+while True:
+    unit_to = input("Enter a target unit (C for Celsius , F for Fahrenheit , K for Kelvin, "
+                    "R for Rankie ,Re for Réaumur , Ro for Rømer: ").strip().lower()
+    if unit_to == unit_from.lower():
+        print("That's impossible. Try again.")
+        continue
+    result = length_converter(number, unit_from, unit_to)

@@ -83,81 +83,76 @@ def length_converter(number, unit_from, unit_to):
 
     return None
 
-while True:
-    print('Type of realms: ',
-          '\n1 -> Length / Distance', '2 -> Temperature', '3 -> Mass / Weight', '4 -> Volume / Capacity',
-          '\n5 -> Area', '6 -> Speed / Velocity', '7 -> Time', '8 -> Energy',
-          '\n9 -> Pressure', '10 -> Power', '11 -> Digital Storage / Data', '12 -> Angle')
 
-    realm = input("\nWhat type of converting do you want? (Number please): ")
-    while not realm.isdigit():
-        realm = input("Enter a number please: ")
+print('Type of realms: ',
+      '\n1 -> Length / Distance', '2 -> Temperature', '3 -> Mass / Weight', '4 -> Volume / Capacity',
+      '\n5 -> Area', '6 -> Speed / Velocity', '7 -> Time', '8 -> Energy',
+      '\n9 -> Pressure', '10 -> Power', '11 -> Digital Storage / Data', '12 -> Angle')
 
-    if realm == '1':
-        print("That's Length/Distance section:")
+realm = input("\nWhat type of converting do you want? (Number please): ")
+while not realm.isdigit():
+    realm = input("Enter a number please: ")
 
-        while True:
-            value = input("Input a measurement (number + unit, e.g., 24 cm): ").strip().split()
-            if len(value) != 2:
-                print("Invalid format. Try again.")
-                continue
+if realm == '1':
+    print("That's Length/Distance section:")
 
-            number_str, unit_from = value
-            try:
-                number = float(number_str)
-            except ValueError:
-                print("Invalid number. Try again.")
-                continue
+    while True:
+        value = input("Input a measurement (number + unit, e.g., 24 cm): ").strip().split()
+        if len(value) != 2:
+            print("Invalid format. Try again.")
+            continue
 
-            break
+        number_str, unit_from = value
+        try:
+            number = float(number_str)
+        except ValueError:
+            print("Invalid number. Try again.")
+            continue
 
-        while True:
-            unit_to = input("Enter a target unit (e.g., m, ft, in): ").strip().lower()
-            if unit_to == unit_from.lower():
-                print("That's impossible. Try again.")
-                continue
-
-            result = length_converter(number, unit_from, unit_to)
-            if result is not None:
-                result = round(result, 4)
-                print(f"{number} {unit_from} = {result} {unit_to} rounded 4 digits")
-                break
-            else:
-                print("Unsupported unit. Try again.")
-
-    elif realm == '2':
-        print("That's Temperature section:")
-
-        while True:
-            value = input("Input a temperature (e.g., 24 C or 42 F): ").strip().split()
-            if len(value) != 2:
-                print("Invalid format. Try again.")
-                continue
-
-            number_str, unit_from = value
-            try:
-                number = float(number_str)
-            except ValueError:
-                print("Invalid number. Try again.")
-                continue
-            break
-
-        while True:
-            unit_to = input("Enter a target unit (C, F, K, R, Re, Ro): ").strip().lower()
-
-            if unit_to == unit_from.lower():
-                print("That's impossible. Try again.")
-                continue
-
-            result = temperature_converter(number, unit_from, unit_to)
-            if result is not None:
-                result = round(result, 4)
-                print(f"{number} {unit_from.upper()} = {result} {unit_to.upper()} rounded 4 digits")
-                break
-            else:
-                print("Unsupported unit. Try again.")
-    loop = input("Would you like to go back and do some other conversation? (y/n): ").lower().strip()
-    if loop == 'n':
         break
-    elif loop == 'y':
-        continue
+
+    while True:
+        unit_to = input("Enter a target unit (e.g., m, ft, in): ").strip().lower()
+        if unit_to == unit_from.lower():
+            print("That's impossible. Try again.")
+            continue
+
+        result = length_converter(number, unit_from, unit_to)
+        if result is not None:
+            result = round(result, 4)
+            print(f"{number} {unit_from} = {result} {unit_to} rounded 4 digits")
+            break
+        else:
+            print("Unsupported unit. Try again.")
+
+elif realm == '2':
+    print("That's Temperature section:")
+
+    while True:
+        value = input("Input a temperature (e.g., 24 C or 42 F): ").strip().split()
+        if len(value) != 2:
+            print("Invalid format. Try again.")
+            continue
+
+        number_str, unit_from = value
+        try:
+            number = float(number_str)
+        except ValueError:
+            print("Invalid number. Try again.")
+            continue
+        break
+
+    while True:
+        unit_to = input("Enter a target unit (C, F, K, R, Re, Ro): ").strip().lower()
+
+        if unit_to == unit_from.lower():
+            print("That's impossible. Try again.")
+            continue
+
+        result = temperature_converter(number, unit_from, unit_to)
+        if result is not None:
+            result = round(result, 4)
+            print(f"{number} {unit_from.upper()} = {result} {unit_to.upper()} rounded 4 digits")
+            break
+        else:
+            print("Unsupported unit. Try again.")

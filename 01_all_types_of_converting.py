@@ -1,3 +1,9 @@
+def weight_mass_converter(number, unit_from, unit_to):
+    unit_from = unit_from.lower()
+    unit_to = unit_to.lower()
+    if unit_from == 'kg':
+
+
 def temperature_converter(number, unit_from, unit_to):
     unit_from = unit_from.lower()
     unit_to = unit_to.lower()
@@ -159,3 +165,29 @@ elif realm == '2':
 
 elif realm == '3':
     print("That's Mass / Weight:")
+    while True:
+        value = input("Input a mass / weight (e.g., 1 kg): ").strip().split()
+        if len(value) != 2:
+            print("Invalid format. Try again.")
+            continue
+        number_str , unit_from = value
+        try:
+            number = float(number_str)
+        except ValueError:
+            print("Invalid number. Try again.")
+            continue
+        break
+    while True:
+        unit_to = (input("Enter a target unit (e.g., grams , miligrams , pounds ,ounces, metric_ton , stone): ")
+                   .strip().lower())
+        if unit_to == unit_from.lower():
+            print("That's impossible. Try again.")
+            continue
+        result = weight_mass_converter(number, unit_from, unit_to)
+        if result is not None:
+            result = round(result, 4)
+            print(f'{number} {unit_from.upper()} = {result} {unit_to} rounded 4 digits')
+            break
+        else:
+            print("Unsupported unit. Try again.")
+            continue

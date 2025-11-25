@@ -2,6 +2,8 @@ def weight_mass_converter(number, unit_from, unit_to):
     unit_from = unit_from.lower()
     unit_to = unit_to.lower()
     if unit_from == 'kg':
+        c = number
+    elif unit_from == 'g':
 
 
 def temperature_converter(number, unit_from, unit_to):
@@ -130,6 +132,7 @@ if realm == '1':
             break
         else:
             print("Unsupported unit. Try again.")
+            continue
 
 elif realm == '2':
     print("That's Temperature section:")
@@ -162,6 +165,7 @@ elif realm == '2':
             break
         else:
             print("Unsupported unit. Try again.")
+            continue
 
 elif realm == '3':
     print("That's Mass / Weight:")

@@ -1,9 +1,67 @@
 def weight_mass_converter(number, unit_from, unit_to):
     unit_from = unit_from.lower()
     unit_to = unit_to.lower()
+
+    if unit_from == unit_to:
+        return None
+
     if unit_from == 'kg':
-        c = number
-    elif unit_from == 'g':
+        if unit_to == 'g': return number * 1000
+        if unit_to == 'mg': return number * 1_000_000
+        if unit_to == 'lbs': return number * 2.20462
+        if unit_to == 'ounces': return number * 35.274
+        if unit_to == 'metric_ton': return number / 1000
+        if unit_to == 'stone': return number / 6.35
+
+    if unit_from == 'g':
+        if unit_to == 'kg': return number / 1000
+        if unit_to == 'mg': return number * 1000
+        if unit_to == 'lbs': return number * 0.00220462
+        if unit_to == 'ounces': return number * 0.035274
+        if unit_to == 'metric_ton': return number / 1_000_000
+        if unit_to == 'stone': return number / 6350
+
+    if unit_from == 'mg':
+        if unit_to == 'kg': return number / 1_000_000
+        if unit_to == 'g': return number / 1000
+        if unit_to == 'lbs': return number * 2.20462e-6
+        if unit_to == 'ounces': return number * 3.5274e-5
+        if unit_to == 'metric_ton': return number / 1_000_000_000
+        if unit_to == 'stone': return number / 6_350_000
+
+    if unit_from == 'lbs':
+        if unit_to == 'kg': return number / 2.20462
+        if unit_to == 'g': return number * 453.592
+        if unit_to == 'mg': return number * 453_592
+        if unit_to == 'ounces': return number * 16
+        if unit_to == 'metric_ton': return number / 2204.62
+        if unit_to == 'stone': return number / 14
+
+    if unit_from == 'ounces':
+        if unit_to == 'kg': return number / 35.274
+        if unit_to == 'g': return number * 28.3495
+        if unit_to == 'mg': return number * 28_349.5
+        if unit_to == 'lbs': return number / 16
+        if unit_to == 'metric_ton': return number / 35_274
+        if unit_to == 'stone': return number / 224
+
+    if unit_from == 'metric_ton':
+        if unit_to == 'kg': return number * 1000
+        if unit_to == 'g': return number * 1_000_000
+        if unit_to == 'mg': return number * 1_000_000_000
+        if unit_to == 'lbs': return number * 2204.62
+        if unit_to == 'ounces': return number * 35274
+        if unit_to == 'stone': return number * 157.473
+
+    if unit_from == 'stone':
+        if unit_to == 'kg': return number * 6.35
+        if unit_to == 'g': return number * 6350
+        if unit_to == 'mg': return number * 6_350_000
+        if unit_to == 'lbs': return number * 14
+        if unit_to == 'ounces': return number * 224
+        if unit_to == 'metric_ton': return number * 0.00635
+
+    return None
 
 
 def temperature_converter(number, unit_from, unit_to):
@@ -182,7 +240,7 @@ elif realm == '3':
             continue
         break
     while True:
-        unit_to = (input("Enter a target unit (e.g., grams , miligrams , pounds ,ounces, metric_ton , stone): ")
+        unit_to = (input("Enter a target unit (g, mg, kg, lbs, ounces, metric_ton, stone): ")
                    .strip().lower())
         if unit_to == unit_from.lower():
             print("That's impossible. Try again.")

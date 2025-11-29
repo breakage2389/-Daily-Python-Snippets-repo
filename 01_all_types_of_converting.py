@@ -1,3 +1,34 @@
+def volume_converter(number, unit_from, unit_to):
+    unit_from = unit_from.lower()
+    unit_to = unit_to.lower()
+
+    to_liters = {
+        'ml': number / 1000,
+        'l': number,
+        'm3': number * 1000,
+        'cm3': number / 1000,
+        'ft3': number * 28.3168,
+        'in3': number * 0.0163871,
+        'gal': number * 3.78541
+    }
+
+    if unit_from not in to_liters or unit_to not in to_liters:
+        return None
+
+    liters = to_liters[unit_from]
+
+    from_liters = {
+        'ml': liters * 1000,
+        'l': liters,
+        'm3': liters / 1000,
+        'cm3': liters * 1000,
+        'ft3': liters / 28.3168,
+        'in3': liters / 0.0163871,
+        'gal': liters / 3.78541
+    }
+
+    return from_liters[unit_to]
+
 def weight_mass_converter(number, unit_from, unit_to):
     unit_from = unit_from.lower()
     unit_to = unit_to.lower()
@@ -249,6 +280,36 @@ elif realm == '3':
         if result is not None:
             result = round(result, 4)
             print(f'{number} {unit_from.upper()} = {result} {unit_to} rounded 4 digits')
+            break
+        else:
+            print("Unsupported unit. Try again.")
+            continue
+
+elif realm == '4':
+    print("That's Volume / Capacity:")
+    while True:
+        value = input("Input a volume (e.g., 2 l): ").strip().split()
+        if len(value) != 2:
+            print("Invalid format. Try again.")
+            continue
+        number_str, unit_from = value
+        try:
+            number = float(number_str)
+        except ValueError:
+            print("Invalid number. Try again.")
+            continue
+        break
+
+    while True:
+        unit_to = input("Enter a target unit (ml, l, m3, cm3, ft3, in3, gal): ").strip().lower()
+        if unit_to == unit_from.lower():
+            print("That's impossible. Try again.")
+            continue
+
+        result = volume_converter(number, unit_from, unit_to)
+        if result is not None:
+            result = round(result, 4)
+            print(f"{number} {unit_from} = {result} {unit_to} rounded 4 digits")
             break
         else:
             print("Unsupported unit. Try again.")

@@ -29,6 +29,7 @@ def volume_converter(number, unit_from, unit_to):
 
     return from_liters[unit_to]
 
+
 def weight_mass_converter(number, unit_from, unit_to):
     unit_from = unit_from.lower()
     unit_to = unit_to.lower()
@@ -181,6 +182,38 @@ def length_converter(number, unit_from, unit_to):
     return None
 
 
+def area_converter(number, unit_from, unit_to):
+    unit_from = unit_from.lower()
+    unit_to = unit_to.lower()
+
+    to_m2 = {
+        'mm2': number / 1_000_000,
+        'cm2': number / 10_000,
+        'm2': number,
+        'km2': number * 1_000_000,
+        'ft2': number * 0.092903,
+        'in2': number * 0.00064516,
+        'yd2': number * 0.836127
+    }
+
+    if unit_from not in to_m2 or unit_to not in to_m2:
+        return None
+
+    m2_value = to_m2[unit_from]
+
+    from_m2 = {
+        'mm2': m2_value * 1_000_000,
+        'cm2': m2_value * 10_000,
+        'm2': m2_value,
+        'km2': m2_value / 1_000_000,
+        'ft2': m2_value / 0.092903,
+        'in2': m2_value / 0.00064516,
+        'yd2': m2_value / 0.836127
+    }
+
+    return from_m2[unit_to]
+
+
 print('Type of realms: ',
       '\n1 -> Length / Distance', '2 -> Temperature', '3 -> Mass / Weight', '4 -> Volume / Capacity',
       '\n5 -> Area', '6 -> Speed / Velocity', '7 -> Time', '8 -> Energy',
@@ -205,7 +238,6 @@ if realm == '1':
         except ValueError:
             print("Invalid number. Try again.")
             continue
-
         break
 
     while True:
@@ -263,7 +295,7 @@ elif realm == '3':
         if len(value) != 2:
             print("Invalid format. Try again.")
             continue
-        number_str , unit_from = value
+        number_str, unit_from = value
         try:
             number = float(number_str)
         except ValueError:
@@ -271,8 +303,7 @@ elif realm == '3':
             continue
         break
     while True:
-        unit_to = (input("Enter a target unit (g, mg, kg, lbs, ounces, metric_ton, stone): ")
-                   .strip().lower())
+        unit_to = input("Enter a target unit (g, mg, kg, lbs, ounces, metric_ton, stone): ").strip().lower()
         if unit_to == unit_from.lower():
             print("That's impossible. Try again.")
             continue
@@ -307,6 +338,36 @@ elif realm == '4':
             continue
 
         result = volume_converter(number, unit_from, unit_to)
+        if result is not None:
+            result = round(result, 4)
+            print(f"{number} {unit_from} = {result} {unit_to} rounded 4 digits")
+            break
+        else:
+            print("Unsupported unit. Try again.")
+            continue
+
+elif realm == '5':
+    print("Area:")
+    while True:
+        value = input("Input an area (e.g., 150 cm2): ").strip().split()
+        if len(value) != 2:
+            print("Invalid format. Try again.")
+            continue
+        number_str, unit_from = value
+        try:
+            number = float(number_str)
+        except ValueError:
+            print("Invalid number. Try again.")
+            continue
+        break
+
+    while True:
+        unit_to = input("Enter a target unit (mm2, cm2, m2, km2, ft2, in2, yd2): ").strip().lower()
+        if unit_to == unit_from.lower():
+            print("That's impossible. Try again.")
+            continue
+
+        result = area_converter(number, unit_from, unit_to)
         if result is not None:
             result = round(result, 4)
             print(f"{number} {unit_from} = {result} {unit_to} rounded 4 digits")

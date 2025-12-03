@@ -1,3 +1,23 @@
+def Speed_converter(number , unit_from , unit_to):
+    unit_from = unit_from.lower()
+    unit_to = unit_to.lower()
+
+    if unit_from == "km/h":
+        if unit_to == "m/s":
+            return number / 3.6
+        if unit_to == "mph":
+            return number / 1.609
+    if unit_from == "m/s":
+        if unit_to == "km/h":
+            return number * 3.6
+        if unit_to == "mph":
+            return number * 2.237
+    if unit_from == "mph":
+        if unit_to == "km/h": return number * 1.609
+        if unit_to == "m/s": return (number *1.609)/3.6
+
+    return None
+
 def volume_converter(number, unit_from, unit_to):
     unit_from = unit_from.lower()
     unit_to = unit_to.lower()
@@ -27,7 +47,7 @@ def volume_converter(number, unit_from, unit_to):
         'gal': liters / 3.78541
     }
 
-    return from_liters[unit_to]
+
 
 
 def weight_mass_converter(number, unit_from, unit_to):
@@ -348,3 +368,35 @@ elif realm == '5':
         result = round(result, 4)
         print(f"{number} {unit_from} = {result} {unit_from}\u00b2 (rounded 4 digits)")
         break
+
+
+elif realm == '6':
+    print('6 -> Speed / Velocity')
+
+    while True:
+        value = input("Input a speed (e.g., 1 km/h): ").strip().split()
+        if len(value) != 2:
+            print("Invalid format. Try again.")
+            continue
+
+        number_str, unit_from = value
+        try:
+            number = float(number_str)
+            break
+        except ValueError:
+            print("Invalid number. Try again.")
+            continue
+
+    while True:
+        unit_to = input("Enter a target unit (km/h, m/s, mph): ").strip().lower()
+
+        result = Speed_converter(number, unit_from, unit_to)
+        if result is not None:
+            result = round(result, 4)
+            print(f"{number} {unit_from} = {result} {unit_to} rounded 4 digits")
+            break
+        else:
+            print("Unsupported unit. Try again.")
+            continue
+
+

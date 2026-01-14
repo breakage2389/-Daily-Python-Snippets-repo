@@ -1,3 +1,47 @@
+def Time(number, unit_from, unit_to):
+    unit_from = unit_from.lower()
+    unit_to = unit_to.lower()
+
+
+    if unit_from == unit_to:
+        return number
+
+    if unit_from == 'hour':
+        if unit_to == 'minutes':
+            return number * 60
+        elif unit_to == 'seconds':
+            return number * 3600
+        elif unit_to == 'milliseconds':
+            return number * 3600000
+
+
+    elif unit_from == 'minutes':
+        if unit_to == 'hour':
+            return number / 60
+        elif unit_to == 'seconds':
+            return number * 60
+        elif unit_to == 'milliseconds':
+            return number * 60000
+
+    elif unit_from == 'seconds':
+        if unit_to == 'hour':
+            return number / 3600
+        elif unit_to == 'minutes':
+            return number / 60
+        elif unit_to == 'milliseconds':
+            return number * 1000
+
+    elif unit_from == 'milliseconds':
+        if unit_to == 'hour':
+            return number / 3600000
+        elif unit_to == 'minutes':
+            return number / 60000
+        elif unit_to == 'seconds':
+            return number / 1000
+
+    return "Невалидна мерна единица"
+
+
 def Speed_converter(number , unit_from , unit_to):
     unit_from = unit_from.lower()
     unit_to = unit_to.lower()
@@ -382,6 +426,8 @@ elif realm == '6':
         number_str, unit_from = value
         try:
             number = float(number_str)
+            if not number >=0:
+                raise ValueError
             break
         except ValueError:
             print("Invalid number. Try again.")
@@ -399,4 +445,33 @@ elif realm == '6':
             print("Unsupported unit. Try again.")
             continue
 
+elif  realm == '7':
+    print('7 -> Time')
+    while True:
+        value = input('Input a time seconds , minutes ,hours ,for example 1 hour): ').strip().split()
+        if len(value) != 2:
+            print('Please enter valid time 1 hour')
+            continue
+        number_str , unit_from = value
+        try:
+            number = float(number_str)
+            if not number > 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Invalid number. Try again.")
+            continue
+        except Exception as e:
+            print(e)
+            continue
 
+    while True:
+        unit_to = input("Enter a target unit (kg): ").strip().lower()
+        result = Time(number, unit_from, unit_to)
+        if result is not None:
+            result = round(result, 4)
+            print(f"{number} {unit_from} = {result} {unit_to} rounded 4 digits")
+            break
+        else:
+            print("Unsupported unit. Try again.")
+            continue

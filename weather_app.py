@@ -1,9 +1,15 @@
 import requests
 
+def wind_deg_to_direction(wind_deg):
+    direction = ['North' , 'NorthEast', 'East', 'SouthEast', 'South', 'SouthWest', 'West', 'NorthWest']
+    index = round(wind_deg/45)%8
+    return direction[index]
+
+
+
 def get_weather(city):
     api_key = 'ca37ca65ca414fe7e65b1b6d75b0e6a2'
     base_url = "http://api.openweathermap.org/data/2.5/weather"
-
     params = {
         'q': city,
         'appid': api_key,
@@ -20,6 +26,8 @@ def get_weather(city):
         humidity = data['main']['humidity']
         wind_speed = data['wind']['speed']
         wind_direction = data['wind']['deg']
+
+        wind_direction = wind_deg_to_direction(wind_direction)
 
         print("-" * 30)
         print(f"📍 City: {city.title()}")

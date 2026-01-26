@@ -59,8 +59,8 @@ while True:
 
     except ValueError:
         print("Please enter a number or your choice.")
-        #continue
+
     except ZeroDivisionError:
         print("Please enter a number or your choice.")
-        #continue
+
 

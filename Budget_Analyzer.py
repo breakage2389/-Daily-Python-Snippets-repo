@@ -1,4 +1,4 @@
-print('EVERYTHING IS IN EURO / €')
+print('THE CURRENCY IS IN EURO / €')
 class Product:
     def __init__(self, manufacturer, model, price, year):
         self.manufacturer = manufacturer

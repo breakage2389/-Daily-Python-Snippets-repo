@@ -10,7 +10,7 @@ class Product:
         return f"{self.year} {self.manufacturer} {self.model} (€{self.price:,.2f})"
 
 def most_expensive_product(inventory):
-    inventory.sort(key=lambda x: x.price, reverse=True)
+    inventory.sort(key=lambda x:x.price ,reverse=True)
     return inventory[0]
 
 
@@ -43,4 +43,4 @@ else:
 
 print(f"Total Cost: €{total_cost:,.2f}")
 
-print(most_expensive_product(inventory))
+print('the most expensive product-> ',most_expensive_product(inventory))
